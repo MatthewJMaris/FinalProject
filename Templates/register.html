@@ -1,22 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 {% extends 'base.html' %}
 {% block body %}
-        <form action="/create" method="POST">
-            <input type="number" name="id" placeholder="ID" class="input_field"> <br>
+        <form action="/register" method="POST">
+            <input type="number" name="user_id" placeholder="ID" class="input_field"> <br>
             <input type="text" name="username" placeholder="Username" class="input_field"> <br>
             <input type="text" name="password" placeholder="password" class="input_field"> <br>
             <input type="text" name="email" placeholder="email" class="input_field"> <br>
             <input type="text" name="full_name" placeholder="Full Name" class="input_field"> <br>
-            <input type="text" name="Type" placeholder="Type" class="input_field"> <!--  Make a dropdown Box here-->
             <input type="submit" value="Submit" class="input_submit"> <br>
         </form>
     </div>
 {% endblock %}
-</body>
-</html>
