@@ -41,11 +41,11 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        if password == 'placholder' or password == 'Placeholder':
+        if password == 'placholder123!' or password == '!123placholder':
             password = password
         else:
             password = h(password)
-        query = text("select * from customers where username = :username and password = :password")
+        query = text("select * from users where username = :username and password = :password")
         params = {"username": username, "password": password}
         result = connection.execute(query, params)
         user = result.fetchone()
