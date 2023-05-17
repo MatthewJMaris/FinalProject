@@ -34,6 +34,12 @@ def ind():
     return render_template('index.html')
 
 
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('login'))
+
+
 # Handles the login screen and will redirect you to the appropriate page
 # If your account is either an Admin, Customer, or Vendor
 @app.route('/login', methods=['POST', 'GET'])
@@ -85,16 +91,16 @@ def registration_account():
     full_name = request.form['full_name']
     password = request.form['password']
     password = h(password)
-    type = 'customer'
+    acc_type = 'customer'
     user = connection.execute(text("select * from users where email= :email"), {'email': email}).fetchone()
     if user is not None:
         flash("An account with this email address already exists.")
         return redirect(url_for('register'))
     else:
-        query = text("insert into users (user_id, username, email, full_name, password, type) values (:user_id, "
-                     ":username, :email, :full_name, :password, :type)")
-        params = {"id": new_id, "username": username, "email": email, "fullname": full_name, "password": password,
-                  "type": type}
+        query = text("insert into users (user_id, username, email, full_name, password, acc_type) values (:user_id, "
+                     ":username, :email, :full_name, :password, :acc_type)")
+        params = {"user_id": new_id, "username": username, "email": email, "full_name": full_name, "password": password,
+                  "acc_type": acc_type}
 
         connection.execute(query, params)
         connection.commit()
@@ -344,9 +350,9 @@ def add_to_cart():
         return redirect(url_for('customer'))
 
 
-@app.route('/account_info')
+@app.route('/acc_info')
 def account_info():
-    return render_template('account_info.html')
+    return render_template('acc_info.html')
 
 
 @app.route('/view_chats')

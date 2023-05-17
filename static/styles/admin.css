@@ -1,5 +1,5 @@
 body {
-    background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Mountains-1412683.svg/1280px-Mountains-1412683.svg.png) no-repeat center center;
+    background: url(https://th.bing.com/th/id/R.9d1086f717a6d75a46558c014c77bf4f?rik=zysBtGO8vs%2bwhg&riu=http%3a%2f%2fdeborahwatkinspaintings.com%2fwp-content%2fuploads%2f2012%2f07%2fsea-fin.jpg&ehk=ZUMbUgWo46VbFD1o%2bK93CZC6n7kT15oRkXw9AJyp2xk%3d&risl=&pid=ImgRaw&r=0) no-repeat center center;
     background-size: cover;
     color: #fff;
     font-family: Arial, sans-serif;
@@ -25,7 +25,7 @@ header {
 }
 
 nav {
-    background-color: #007f5f;
+    background-color: #0099ff;
     padding: 10px;
     justify-content: center;
 }
@@ -56,7 +56,7 @@ section {
 }
 
 button {
-    background-color: #007f5f;
+    background-color: #0099ff;
     border: none;
     border-radius: 5px;
     color: #fff;
