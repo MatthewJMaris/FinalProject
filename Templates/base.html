@@ -1,131 +1,116 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <link rel= "stylesheet" href= "../static/styles/header.css">
-    <title>My site</title>
-  </head>
+<html>
+<head>
+    <script>
+		function viewAllAccounts() {
+			// Get the popup element
+			var popup = document.getElementById("view-all-accounts-popup");
 
-  <body>
-    <header class="work">
-      <div class="topBar">
-        <div class="">
-          <ul class="barItem">
+			// Show the popup
+			popup.style.display = "block";
+		}
 
-            <li><a href="/">HOME</a></li>
-            <li>SERVICES</li>
-            <li>ABOUT</li>
-            <li>CONTACT</li>
-          </ul>
+		function createproducts() {
+			// Get the popup element
+			var popup = document.getElementById("create-product-popup");
+
+			// Show the popup
+			popup.style.display = "block";
+		}
+
+		function viewPendingRequests() {
+			// Get the popup element
+			var popup = document.getElementById("view-pending-requests-popup");
+
+			// Show the popup
+			popup.style.display = "block";
+		}
+
+        function viewProducts() {
+			// Get the popup element
+			var popup = document.getElementById("view-products-popup");
+
+			// Show the popup
+			popup.style.display = "block";
+		}
+
+        function viewInfo() {
+			// Get the popup element
+			var popup = document.getElementById("view-info-popup");
+
+			// Show the popup
+			popup.style.display = "block";
+		}
+
+		function closePopup(popupId) {
+			// Get the popup element
+			var popup = document.getElementById(popupId);
+
+			// Hide the popup
+			popup.style.display = "none";
+		}
+	</script>
+    <link rel="stylesheet" type="text/css" href="../static/styles/admin.css">
+</head>
+<body>
+    <header>
+    {% if session.logged_in %}
+        {% if session.type == 'Vendor' %}
+            <!-- Vendor-specific items -->
+            <h2>Welcome Vendor {{ session.username }}</h2>
+            <!-- Add vendor-specific content here -->
+        {% elif session.type == 'Admin' %}
+            <!-- Admin-specific items -->
+            <h2>Welcome Admin {{ session.username }}</h2>
+            <!-- Add admin-specific content here -->
+        {% else %}
+            <!-- Customer-specific items -->
+            <h2>Welcome Customer {{ session.username }}</h2>
+            <!-- Add customer-specific content here -->
+        {% endif %}
+    {% else %}
+        <h2>Welcome Maris Resell Co. &lt;3</h2>
+    {% endif %}
+
+    <nav>
+        <ul>
+            {% if session.logged_in %}
+        {% if session.type == 'Vendor' %}
+            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+			<li><a href="#" onclick="viewProducts()">View All Products</a></li>
+            <li><a href="#" onclick="createproducts()">Add New Product</a></li>
+			<li><a href="#" onclick="viewChats()">View Chats</a></li>
+            <li><a href="/customer">Customer View</a></li>
+        {% elif session.type == 'Admin' %}
+            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+			<li><a href="#" onclick="viewProducts()">View All Products</a></li>
+            <li><a href="#" onclick="createproducts()">Add New Product</a></li>
+			<li><a href="#" onclick="viewChats()">View Chats</a></li>
+            <li><a href="/customer">Customer View</a></li>
+        {% else %}
+            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+            <li><a href="/viewchats" onclick="viewChats()">Chat With Us!</a></li>
+        {% endif %}
+    {% else %}
+            <li><a href="/in">Log In</a></li>
+            <li><a href="/register">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+        <div>
+            <table>
+                <tbody>
+                <tr>
+                    <input type="text"><button>Search</button>
+                </tr>
+                </tbody>
+            </table>
         </div>
-
-        <div class="formSection barItem">
-          <form class="barItem" action="" method="post">
-            <input type="text" name="uid" value="" placeholder="E-mail" required>
-            <input type="password" name="pass" value="" placeholder="Password" required>
-            <input type="submit" name="loginButton" value="LOGIN">
-          </form>
-
-          <button class="barItem input" style="margin-left:10px;">
-            <a href="#">SIGNUP</a>
-          </button>
-        </div>
-
-      </div>
     </header>
 
-    {% block body %}
-    {% endblock %}
 
-    <footer class="footer">
-      <div class="footer__addr">
-        <h1 class="footer__logo">A very cool looking footer!</h1>
-
-        <h2>Contact</h2>
-
-        <address>
-          5534 Somewhere In. The World 22193-10212<br>
-
-          <a class="footer__btn" href="mailto:example@gmail.com">Email Us</a>
-        </address>
-      </div>
-
-      <ul class="footer__nav">
-        <li class="nav__item">
-          <h2 class="nav__title">Media</h2>
-
-          <ul class="nav__ul">
-            <li>
-              <a href="#">Online</a>
-            </li>
-
-            <li>
-              <a href="#">Print</a>
-            </li>
-
-            <li>
-              <a href="#">Alternative Ads</a>
-            </li>
-          </ul>
-        </li>
-
-        <li class="nav__item nav__item--extra">
-          <h2 class="nav__title">Technology</h2>
-
-          <ul class="nav__ul nav__ul--extra">
-            <li>
-              <a href="#">Hardware Design</a>
-            </li>
-
-            <li>
-              <a href="#">Software Design</a>
-            </li>
-
-            <li>
-              <a href="#">Digital Signage</a>
-            </li>
-
-            <li>
-              <a href="#">Automation</a>
-            </li>
-
-            <li>
-              <a href="#">Artificial Intelligence</a>
-            </li>
-
-            <li>
-              <a href="#">IoT</a>
-            </li>
-          </ul>
-        </li>
-
-        <li class="nav__item">
-          <h2 class="nav__title">Legal</h2>
-
-          <ul class="nav__ul">
-            <li>
-              <a href="#">Privacy Policy</a>
-            </li>
-
-            <li>
-              <a href="#">Terms of Use</a>
-            </li>
-
-            <li>
-              <a href="#">Sitemap</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-
-      <div class="legal">
-        <p>&copy; 2019 Something. All rights reserved.</p>
-
-        <div class="legal__links">
-          <span>Made with <span class="heart">♥</span> remotely from Anywhere</span>
-        </div>
-      </div>
+    <footer>
+        <p>&copy; 2023 Riley is great. All rights reserved.</p>
     </footer>
-
-  </body>
+</body>
 </html>
